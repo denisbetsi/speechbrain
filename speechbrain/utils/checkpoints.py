@@ -197,7 +197,7 @@ def torch_patched_state_dict_load(path, device="cpu"):
     -------
     The loaded state dict.
     """
-    state_dict = torch.load(path, map_location=device)
+    state_dict = torch.load(path, map_location=device, weights_only=True)
     state_dict = hook_on_loading_state_dict_checkpoint(state_dict)
     return state_dict
 

@@ -230,7 +230,7 @@ if __name__ == "__main__":
         hparams["pretrained_interpreter"] is not None
     ), "You need to specify a path for the pretrained_interpreter!"
     hparams["psi_model"].load_state_dict(
-        torch.load(hparams["pretrained_interpreter"], map_location="cpu")
+        torch.load(hparams["pretrained_interpreter"], map_location="cpu", weights_only=True)
     )
 
     if hparams["int_method"] == "lmac":

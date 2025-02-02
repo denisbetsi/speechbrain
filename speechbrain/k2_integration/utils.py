@@ -120,7 +120,7 @@ def load_G(path: Union[str, Path], cache: bool = True) -> k2.Fsa:
             " if this is not what you want."
         )
         G = k2.Fsa.from_dict(
-            torch.load(path.replace(".fst.txt", ".pt"), map_location="cpu")
+            torch.load(path.replace(".fst.txt", ".pt"), map_location="cpu", weights_only=True)
         )
         return G
 

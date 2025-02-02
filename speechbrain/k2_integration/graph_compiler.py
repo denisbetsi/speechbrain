@@ -111,7 +111,7 @@ class GraphCompiler(abc.ABC):
                     " Set 'caching: False' in the yaml"
                     " if this is not what you want."
                 )
-                HL = k2.Fsa.from_dict(torch.load(path, map_location="cpu"))
+                HL = k2.Fsa.from_dict(torch.load(path, map_location="cpu", weights_only=True))
                 return HL
 
         logger.info("Composing H and L")
@@ -171,7 +171,7 @@ class GraphCompiler(abc.ABC):
                     " Set 'caching: False' in the yaml"
                     " if this is not what you want."
                 )
-                HLG = k2.Fsa.from_dict(torch.load(path, map_location="cpu"))
+                HLG = k2.Fsa.from_dict(torch.load(path, map_location="cpu", weights_only=True))
                 return HLG
 
         logger.info("Intersecting L and G")
