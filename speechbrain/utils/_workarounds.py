@@ -22,7 +22,7 @@ def _cycliclrsaver(obj, path):
 def _cycliclrloader(obj, path, end_of_epoch):
     del end_of_epoch  # Unused
     device = "cpu"
-    state_dict = torch.load(path, map_location=device)
+    state_dict = torch.load(path, map_location=device, weights_only=True)
     if state_dict.get("_scale_fn_ref") == WEAKREF_MARKER:
         if not isinstance(obj._scale_fn_ref, weakref.WeakMethod):
             MSG = "Loading CyclicLR scheduler and the _scale_ref_fn did not exist in instance."
@@ -31,6 +31,6 @@ def _cycliclrloader(obj, path, end_of_epoch):
             MSG += " If this was not intentional, the scheduler might not work correctly."
             warnings.warn(MSG)
     try:
-        obj.load_state_dict(torch.load(path, map_location=device), strict=True)
+        obj.load_state_dict(torch.load(path, map_location=device, weights_only=True), strict=True)
     except TypeError:
-        obj.load_state_dict(torch.load(path, map_location=device))
+        obj.load_state_dict(torch.load(path, map_location=device, weights_only=True))

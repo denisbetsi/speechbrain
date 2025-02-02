@@ -197,7 +197,7 @@ if __name__ == "__main__":
 
     # Load pretrained model
     if "pretrained" in hparams:
-        state_dict = torch.load(hparams["pretrained"])
+        state_dict = torch.load(hparams["pretrained"], weights_only=True)
         hparams["modules"]["model"].load_state_dict(state_dict)
 
     asr_brain = ASR_Brain(

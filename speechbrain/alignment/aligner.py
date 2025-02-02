@@ -1324,7 +1324,7 @@ class HMMAligner(torch.nn.Module):
     @mark_as_loader
     def _load(self, path, end_of_epoch=False):
         del end_of_epoch  # Not used here.
-        self.align_dict = torch.load(path)
+        self.align_dict = torch.load(path, weights_only=True)
 
 
 def map_inds_to_intersect(lists1, lists2, ind2labs):

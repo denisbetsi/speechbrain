@@ -326,7 +326,7 @@ class MSTacotron2(Pretrained):
             source=self.hparams.random_speaker_sampler_source,
             savedir=self.hparams.pretrainer.collect_in,
         )
-        random_speaker_gmm = torch.load(speaker_gmm_local_path)
+        random_speaker_gmm = torch.load(speaker_gmm_local_path, weights_only=True)
         gmm_n_components = random_speaker_gmm["gmm_n_components"]
         gmm_means = random_speaker_gmm["gmm_means"]
         gmm_covariances = random_speaker_gmm["gmm_covariances"]
